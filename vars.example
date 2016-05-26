@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# The main configuration file
+
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Update build test configuration to match that used for official builds
+OPENVPN_GIT_URL="https://github.com/OpenVPN/openvpn.git"
+OPENVPN_BUILD_GIT_URL="https://github.com/OpenVPN/openvpn-build.git"
+SIGN_TIMESTAMP_URL="http://timestamp.digicert.com"
+
+BASE_DIR="$HOME/openvpn-windows-buildtest"
+WINDOWS_NSIS_DIR="$BASE_DIR/openvpn-build/windows-nsis"
+CERT_FILE="$HOME/my-user-mode-authenticode-certificate.pfx"
+CERT_PASS="secretpassword"
+
+EMAIL="${EMAIL:-john@domain.com}"
+EXTRA_OPENVPN_CONFIG=""
+
+# Where to copy the installers
+WEBSERVER="build.domain.com"
+WEBSERVER_DIR="/var/www/openvpn-snapshots"
