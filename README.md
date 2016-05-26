@@ -35,12 +35,21 @@ to _vars_, _vars.2.3_ and _vars.master_, and adapt them to your environment.
 Note that the script fetches openvpn-build at build time. You can use your own 
 fork by modifying OPENVPN_BUILD_GIT_URL in the vars file.
 
+## Usage
+
+You can run the script with
+
+    $ ./build.sh config-file
+
+Where config-file is based on vars.2.3.example or vars.master.example. The name 
+of the file as such is irrelevant.
+
 To automate the script add entries to cron, e.g.
 
     05 * * * * cd /home/john/openvpn-windows-buildtest && ./build.sh vars.2.3
     35 * * * * cd /home/john/openvpn-windows-buildtest && ./build.sh vars.master
 
-# License
+## License
 
 This program has been licensed under the BSD license. See the file LICENSE for 
 details.
