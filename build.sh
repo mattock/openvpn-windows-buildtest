@@ -45,7 +45,7 @@ fi
 echo "$LATEST_COMMIT" > "$TEMP_DIR/latest_commit.new"
 diff "$TEMP_DIR/latest_commit.new" "$TEMP_DIR/latest_commit" > /dev/null 2>&1
 
-if [ $? -ne 0 ]; then
+if [ $? -ne 0 ] || [ "$FORCE" = "true" ]; then
 
     # We don't want openvpn-build to send logs in non-English languages
     export LC_ALL=C
