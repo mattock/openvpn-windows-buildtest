@@ -42,7 +42,13 @@ You can run the script with
     $ ./build.sh config-file
 
 Where config-file is based on vars.2.3.example or vars.master.example. The name 
-of the file as such is irrelevant.
+of the file as such is irrelevant. You can customize the behavior of the script
+by overriding variables, e.g.
+
+    $ EMAIL=jake@domain.com FORCE=true ./build.sh vars.master
+
+The command forces a build of Git "master" and sends the report to
+jake@domain.com.
 
 To automate the script add entries to cron, e.g.
 
