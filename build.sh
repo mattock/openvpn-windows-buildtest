@@ -53,7 +53,7 @@ if [ $? -ne 0 ] || [ "$FORCE" = "true" ]; then
 
     # Refetch openvpn-build
     rm -rf "$BASE_DIR/openvpn-build"
-    git clone $OPENVPN_BUILD_GIT_URL "$BASE_DIR/openvpn-build" > /dev/null 2>&1
+    git clone -b $OPENVPN_BUILD_BRANCH $OPENVPN_BUILD_GIT_URL "$BASE_DIR/openvpn-build" > /dev/null 2>&1
 
     cd "$WINDOWS_NSIS_DIR"
     EXTRA_OPENVPN_CONFIG="$EXTRA_OPENVPN_CONFIG" OPENVPN_BRANCH="$OPENVPN_BRANCH" OPENVPN_VERSION="$OPENVPN_VERSION" OPENVPN_GUI_VERSION="$OPENVPN_GUI_VERSION" OPENVPN_GUI_URL="$OPENVPN_GUI_URL" MAKEOPTS="-j1" ./build-snapshot --sign --sign-pkcs12="$CERT_FILE" --sign-pkcs12-pass="$CERT_PASS" --sign-timestamp="$SIGN_TIMESTAMP_URL" > "$LOG" 2>&1
