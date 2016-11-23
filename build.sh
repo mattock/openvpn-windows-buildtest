@@ -71,12 +71,18 @@ if [ $? -ne 0 ] || [ "$FORCE" = "true" ]; then
         # Remove slashes from the branch name (e.g. "release/2.3")
         BRANCH=`echo "$OPENVPN_BRANCH"|tr "/" "-"`
 
-        INSTALLER_32=`ls openvpn-install-2.*-i686.exe`
-        INSTALLER_64=`ls openvpn-install-2.*-x86_64.exe`
         NEW_BASENAME="openvpn-install-$BRANCH-$TIMESTAMP-$LATEST_COMMIT_ABBREV"
 
-        scp $INSTALLER_32 $WEBSERVER:$WEBSERVER_DIR/$NEW_BASENAME-i686.exe
-        scp $INSTALLER_64 $WEBSERVER:$WEBSERVER_DIR/$NEW_BASENAME-x86_64.exe
+        if [ "$BRANCH" = "master" ]; then
+            INSTALLER_COMBINED=`ls openvpn-install-2.*-I???.exe`
+            scp $INSTALLER_COMBINED $WEBSERVER:$WEBSERVER_DIR/$NEW_BASENAME.exe
+
+        elif [ "$BRANCH" = "release-2.3" ]; then
+            INSTALLER_32=`ls openvpn-install-2.*-i686.exe`
+            INSTALLER_64=`ls openvpn-install-2.*-x86_64.exe`
+            scp $INSTALLER_32 $WEBSERVER:$WEBSERVER_DIR/$NEW_BASENAME-i686.exe
+            scp $INSTALLER_64 $WEBSERVER:$WEBSERVER_DIR/$NEW_BASENAME-x86_64.exe
+        fi
     fi
 
 else
