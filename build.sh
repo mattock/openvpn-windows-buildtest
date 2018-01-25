@@ -56,7 +56,7 @@ if [ $? -ne 0 ] || [ "$FORCE" = "true" ]; then
     git clone -b $OPENVPN_BUILD_BRANCH $OPENVPN_BUILD_GIT_URL "$BASE_DIR/openvpn-build" > /dev/null 2>&1
 
     cd "$WINDOWS_NSIS_DIR"
-    EXTRA_OPENVPN_CONFIG="$EXTRA_OPENVPN_CONFIG" OPENVPN_BRANCH="$OPENVPN_BRANCH" OPENVPN_VERSION="$OPENVPN_VERSION" OPENVPN_GUI_VERSION="$OPENVPN_GUI_VERSION" OPENVPN_GUI_URL="$OPENVPN_GUI_URL" MAKEOPTS="-j1" ./build-snapshot --sign --sign-pkcs12="$CERT_FILE" --sign-pkcs12-pass="$CERT_PASS" --sign-timestamp="$SIGN_TIMESTAMP_URL" > "$LOG" 2>&1
+    EXTRA_OPENVPN_CONFIG="$EXTRA_OPENVPN_CONFIG" OPENVPN_BRANCH="$OPENVPN_BRANCH" OPENVPN_VERSION="$OPENVPN_VERSION" OPENSSL_VERSION="$OPENSSL_VERSION" OPENVPN_GUI_VERSION="$OPENVPN_GUI_VERSION" OPENVPN_GUI_URL="$OPENVPN_GUI_URL" MAKEOPTS="-j1" ./build-snapshot --sign --sign-pkcs12="$CERT_FILE" --sign-pkcs12-pass="$CERT_PASS" --sign-timestamp="$SIGN_TIMESTAMP_URL" > "$LOG" 2>&1
 
     if [ $? -ne 0 ]; then
         tail -n 100 "$LOG" > "$LOG_TAIL"
@@ -73,7 +73,7 @@ if [ $? -ne 0 ] || [ "$FORCE" = "true" ]; then
 
         NEW_BASENAME="openvpn-install-$BRANCH-$TIMESTAMP-$LATEST_COMMIT_ABBREV"
 
-        if [ "$BRANCH" = "master" ]; then
+        if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "release-2.4" ]; then
             INSTALLER_COMBINED=`ls openvpn-install-2.*-I???.exe`
             scp $INSTALLER_COMBINED $WEBSERVER:$WEBSERVER_DIR/$NEW_BASENAME.exe
 

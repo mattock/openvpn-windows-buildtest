@@ -29,8 +29,10 @@ Right now it is assumed that all builds are signed and that a signing
 certificate is available as a (pfx) file. The signing step could be made 
 optional.
 
-After the requirements are taken care of, copy the .example configuration files 
-to _vars_, _vars.2.3_ and _vars.master_, and adapt them to your environment.
+After the requirements are taken care of, copy the vars.example configuration
+file to _vars_ and adapt it to your environment. Vars files for release/2.3,
+release/2.4 and master Git branches are provided as they don't contain any
+sensitive data such as passwords.
 
 Note that the script fetches openvpn-build at build time. You can use your own 
 fork by modifying OPENVPN_BUILD_GIT_URL in the vars file.
@@ -53,7 +55,8 @@ jake@domain.com.
 To automate the script add entries to cron, e.g.
 
     05 * * * * cd /home/john/openvpn-windows-buildtest && ./build.sh vars.2.3
-    35 * * * * cd /home/john/openvpn-windows-buildtest && ./build.sh vars.master
+    25 * * * * cd /home/john/openvpn-windows-buildtest && ./build.sh vars.2.4
+    45 * * * * cd /home/john/openvpn-windows-buildtest && ./build.sh vars.master
 
 ## License
 
