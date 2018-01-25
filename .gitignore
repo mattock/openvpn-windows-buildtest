@@ -1,3 +1,5 @@
+openvpn-build
+tmp-*
 vars
 vars.2.3
 vars.master
